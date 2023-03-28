@@ -25,13 +25,19 @@ Route::get('/categories',[CategoryController::class, 'index'])->name('categories
 
 Route::group(['prefix' => 'products', 'as' => 'products.'], function () {
     Route::get('create', [ProductController::class, 'create'])->name('create');
+    Route::post('', [ProductController::class, 'store'])->name('store');
+    Route::get('show', [ProductController::class, 'show'])->name('show');
 
 
 });
 
 Route::group(['prefix' => 'categories', 'as' => 'categories.'], function () {
     Route::get('/create',[CategoryController::class, 'create'])->namee('create');
+    Route::post('', [CategoryController::class, 'store'])->name('store');
 
 });
+
+Route::get('/categories/{category}', [CategoryController::class, 'show']);
+Route::get('/categories/{category}/products', [ProductController::class, 'list'])->name('products.list');
 
 require __DIR__.'/auth.php';

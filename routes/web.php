@@ -20,5 +20,18 @@ Route::get('/', function () {
 
 Route::get('/hello', [TestController::class, 'testView']);
 Route::get('/categories',[CategoryController::class, 'index'])->name('categories.list');
-Route::get('/create',[CategoryController::class, 'create'])->namee('create');
+
+
+
+Route::group(['prefix' => 'products', 'as' => 'products.'], function () {
+    Route::get('create', [ProductController::class, 'create'])->name('create');
+
+
+});
+
+Route::group(['prefix' => 'categories', 'as' => 'categories.'], function () {
+    Route::get('/create',[CategoryController::class, 'create'])->namee('create');
+
+});
+
 require __DIR__.'/auth.php';

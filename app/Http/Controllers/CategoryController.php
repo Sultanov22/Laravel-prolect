@@ -20,6 +20,13 @@ class CategoryController extends Controller
         return view('categories.index',['categories' => $categories]);
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -37,8 +44,23 @@ class CategoryController extends Controller
         return view('categories.create');
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Category  $category
+     * @return \Illuminate\Http\JsonResponse
+     */
+
     public function show(Category $category)
     {
         return $this->responseSuccess($category->toArray());
     }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Category  $category
+     * @return \Illuminate\Http\Response
+     */
 }
